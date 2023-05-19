@@ -31,6 +31,15 @@ async function run() {
       .db("happyBive")
       .collection("shopByCategory");
 
+    const toysCollection = client.db("happyBive").collection("toys");
+
+    /* Toys */
+    app.get("/toys", async (req, res) => {
+      const result = await toysCollection.find().toArray();
+      res.send(result);
+    });
+
+    /* Sub Category */
     app.get("/subCategories", async (req, res) => {
       let query = {};
 
