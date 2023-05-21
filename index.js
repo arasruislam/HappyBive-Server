@@ -55,6 +55,13 @@ async function run() {
       const result = await toysCollection.insertOne(req.body);
       res.send(result);
     });
+    
+    app.delete("/toys/:id", async (req, res) => {
+      const result = await toysCollection.deleteOne({
+        _id: new ObjectId(req.params.id),
+      });
+      res.send(result);
+    });
 
     /* Sub Category */
     app.get("/subCategories", async (req, res) => {
