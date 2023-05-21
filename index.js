@@ -40,12 +40,15 @@ async function run() {
     });
 
     app.get("/toys/:id", async (req, res) => {
-
       const result = await toysCollection.findOne({
         _id: new ObjectId(req.params.id),
       });
       res.send(result);
-      
+    });
+
+    app.post("/toys", async (req, res) => {
+      const result = await toysCollection.insertOne(req.body);
+      res.send(result);
     });
 
     /* Sub Category */
