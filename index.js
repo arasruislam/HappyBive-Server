@@ -92,13 +92,20 @@ async function run() {
     app.get("/subCategories", async (req, res) => {
       let query = {};
 
-      if (req.query?.category) {
+      if (req.query?.subCategory) {
         query = {
-          category: req.query.category,
+          subCategory: req.query.subCategory,
         };
       }
 
       const result = await categoryCollection.find(query).toArray();
+      res.send(result);
+    });
+
+    app.get("/subCategories/:id", async (req, res) => {
+      const result = await categoryCollection.findOne({
+        _id: new ObjectId(req.params.id),
+      });
       res.send(result);
     });
 
