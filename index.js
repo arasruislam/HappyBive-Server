@@ -24,7 +24,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    await client.connect();
+    // await client.connect();
 
     //   Database Collection
     const categoryCollection = client
@@ -59,7 +59,6 @@ async function run() {
     app.put("/toys/:id", async (req, res) => {
       const id = req.params.id;
       const updatedToy = req.body;
-      console.log(updatedToy);
       const filter = { _id: new ObjectId(id) };
       const options = { upsert: true };
       const updateDoc = {
